@@ -68,12 +68,12 @@
                                 >
                                 @auth
                                 {{-- edit btn --}}
-                                    <div class="mt-4 p-2 flex space-x-6">
+                                    {{-- <div class="mt-4 p-2 flex space-x-6">
                                         <a href="{{ route('jobs.edit', $job->id) }}">
                                             <i class="fa-solid fa-pencil"></i> Edit
-                                        </a>
+                                        </a> --}}
                                         {{-- Delete btn --}}
-                                        <form action="{{ route('jobs.destroy', $job->id) }}" method="POST">
+                                        {{-- <form action="{{ route('jobs.destroy', $job->id) }}" method="POST">
 
                                             @csrf
                                             @method('DELETE')
@@ -82,7 +82,7 @@
                                                 <i class="fa-solid fa-trash"></i> Delete
                                             </button>
                                         </form>
-                                    </div>
+                                    </div> --}}
                                 @endauth
                             </div>
                         </div>
