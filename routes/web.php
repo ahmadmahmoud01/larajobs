@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\Job;
+use app\helpers\RouteSingleton;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
-use App\Models\Job;
 use Illuminate\Queue\Events\JobProcessed;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,16 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // Jobs Routes
 Route::resource('jobs', JobController::class)->middleware('auth')->except(['index', 'show']);
 
-Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
+$router = RouteSingleton::getInstance();  // only one object only from class
+
+$router->addRoute('get', '/', [JobController::class, 'index'], 'jobs.index');
+
+$router->addRoute('get', '/jobs/{job}', [JobController::class, 'show'], 'jobs.show');
+
+// Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 
  // manage Jobs
 
